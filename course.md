@@ -1,6 +1,6 @@
 # React course
 
-[https://btholt.github.io/complete-intro-to-react-v6/components](https://btholt.github.io/complete-intro-to-react-v6/components)
+[https://btholt.github.io/complete-intro-to-react-v6](https://btholt.github.io/complete-intro-to-react-v6)
 
 [https://github.com/btholt/citr-v6-project](https://github.com/btholt/citr-v6-project)
 
@@ -10,24 +10,36 @@ Example:
 
 ```jsx
 const Pet = (props) => {
-    return React.createElement("div", {}, [
-        React.createElement("h2", {}, props.name),
-        React.createElement("h3", {}, props.animal),
-        React.createElement("h3", {}, props.breed),
-    ])
-}
+  return React.createElement("div", {}, [
+    React.createElement("h2", {}, props.name),
+    React.createElement("h3", {}, props.animal),
+    React.createElement("h3", {}, props.breed),
+  ]);
+};
 
 const App = () => {
-    return React.createElement(
-        "div",
-        {},
-        React.createElement("h1", {id: "my-brand"}, "Adopt Me!"),
-        React.createElement(Pet, { name: "Luna", animal: "Dog", breed: "Havanese"}),
-        React.createElement(Pet, { name: "Pepper", animal: "Bird", breed: "Cockatiel"}),
-        React.createElement(Pet, { name: "Sudo", animal: "Dog", breed: "Wheaten Terrier"}),
-    )
-}
-ReactDOM.render(React.createElement(App), document.getElementById("root"))
+  return React.createElement(
+    "div",
+    {},
+    React.createElement("h1", { id: "my-brand" }, "Adopt Me!"),
+    React.createElement(Pet, {
+      name: "Luna",
+      animal: "Dog",
+      breed: "Havanese",
+    }),
+    React.createElement(Pet, {
+      name: "Pepper",
+      animal: "Bird",
+      breed: "Cockatiel",
+    }),
+    React.createElement(Pet, {
+      name: "Sudo",
+      animal: "Dog",
+      breed: "Wheaten Terrier",
+    })
+  );
+};
+ReactDOM.render(React.createElement(App), document.getElementById("root"));
 ```
 
 <aside>
@@ -64,7 +76,8 @@ npm install -D prettier
 Create a file in the root of your project called .prettierrc with this content
 
 ```jsx
-{} //this means no custom configurations applied
+{
+} //this means no custom configurations applied
 ```
 
 Edit package.json to run prettier for js and jsx files
@@ -93,23 +106,20 @@ Add .eslintrc.json in the root of your project with this content:
 
 ```json
 {
-    "extends": [
-        "eslint:recommended",
-        "prettier"
-    ],
-    "plugins": [],
-    "parserOptions": {
-        "ecmaVersion": 2021,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "node": true
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": [],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
 }
 ```
 
@@ -123,7 +133,7 @@ And add the script to package.json
   "main": "index.js",
   "scripts": {
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"  
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "author": "",
   "license": "ISC",
@@ -205,8 +215,8 @@ npm install react@17.0.1 react-dom@17.0.1
 Now we can import React and ESlint won’t complain anymore about `React is not defined`
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 ```
 
 And run Parcel
@@ -219,7 +229,7 @@ npm run dev
 > adopt-me@1.0.0 dev
 > parcel src/index.html
 
-Server running at http://localhost:1234 
+Server running at http://localhost:1234
 ✨  Built in 4.14s.
 ```
 
@@ -234,20 +244,20 @@ Move Pet component to its own file, as it’s kind of standard practice:
 import React from "react";
 
 const Pet = (props) => {
-    return React.createElement("div", {}, [
-      React.createElement("h2", {}, props.name),
-      React.createElement("h3", {}, props.animal),
-      React.createElement("h3", {}, props.breed),
-    ]);
-  };
+  return React.createElement("div", {}, [
+    React.createElement("h2", {}, props.name),
+    React.createElement("h3", {}, props.animal),
+    React.createElement("h3", {}, props.breed),
+  ]);
+};
 
 export default Pet;
 ```
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Pet from './Pet';
+import React from "react";
+import ReactDOM from "react-dom";
+import Pet from "./Pet";
 ```
 
 <aside>
@@ -259,7 +269,7 @@ import Pet from './Pet';
 
 It’a a transpiler tool (e.g. from JSX to Javascript).
 
-Create a  `.babelrc` file:
+Create a `.babelrc` file:
 
 ```jsx
 {
@@ -309,26 +319,26 @@ const Pet = (props) => {
       <h3>{props.animal}</h3>
       <h3>{props.breed}</h3>
     </div>
-  )
-}
+  );
+};
 
 export default Pet;
 ```
 
 ```jsx
-import ReactDOM from 'react-dom';
-import Pet from './Pet';
+import ReactDOM from "react-dom";
+import Pet from "./Pet";
 
 const App = () => {
   return (
-  <div>
-    <h1>Adopt Me!</h1>
-    <Pet name="Luna" animal="Dog" breed="Havanese" />
-    <Pet name="Pepper" animal="Bird" breed="Cockatiel" />
-    <Pet name="Beam" animal="Dog" breed="Wheaten Terrier" />
-  </div>
-  )
-}
+    <div>
+      <h1>Adopt Me!</h1>
+      <Pet name="Luna" animal="Dog" breed="Havanese" />
+      <Pet name="Pepper" animal="Bird" breed="Cockatiel" />
+      <Pet name="Beam" animal="Dog" breed="Wheaten Terrier" />
+    </div>
+  );
+};
 
 ReactDOM.render(React.createElement(App), document.getElementById("root"));
 ```
@@ -355,7 +365,7 @@ npm install -D eslint-plugin-import@2.22.1 eslint-plugin-jsx-a11y@6.4.1 eslint-p
 
 </aside>
 
-Enable plugins in  .eslintrc.json and disable some rules:
+Enable plugins in .eslintrc.json and disable some rules:
 
 ```jsx
 {
@@ -412,35 +422,39 @@ Example:
 
 ```jsx
 const SearchParams = () => {
-    const location = "Seattle, WA"
-    return (
-        <div className="search-params">
-            <form>
-                <label htmlFor="location">
-                    location
-                    <input id="location" value={location.toUpperCase} placeholder="Location" />
-                </label>
-                <button>Submit</button>
-            </form>
-        </div>
-    )
-}
+  const location = "Seattle, WA";
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          location
+          <input
+            id="location"
+            value={location.toUpperCase}
+            placeholder="Location"
+          />
+        </label>
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
 
-export default SearchParams
+export default SearchParams;
 ```
 
 ```jsx
-import ReactDOM from 'react-dom';
-import SearchParams from './SearchParams';
+import ReactDOM from "react-dom";
+import SearchParams from "./SearchParams";
 
 const App = () => {
   return (
-  <div>
-    <h1>Adopt Me!</h1>
-    <SearchParams />
-  </div>
-  )
-}
+    <div>
+      <h1>Adopt Me!</h1>
+      <SearchParams />
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
@@ -464,24 +478,29 @@ Warning: You provided a `value` prop to a form field without an `onChange` handl
 Fixed using useState hook
 
 ```jsx
-import { useState } from "react"
+import { useState } from "react";
 
 const SearchParams = () => {
-    const [location, setLocation] = useState("Seattle, WA");
-    return (
-        <div className="search-params">
-            <form>
-                <label htmlFor="location">
-                    location
-                    <input id="location" onChange={e => setLocation(e.target.value)} value={location.toUpperCase()} placeholder="Location" />
-                </label>
-                <button>Submit</button>
-            </form>
-        </div>
-    )
-}
+  const [location, setLocation] = useState("Seattle, WA");
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          location
+          <input
+            id="location"
+            onChange={(e) => setLocation(e.target.value)}
+            value={location.toUpperCase()}
+            placeholder="Location"
+          />
+        </label>
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
 
-export default SearchParams
+export default SearchParams;
 ```
 
 ## Rules of hooks
@@ -495,7 +514,7 @@ So don’t do things like this:
 ```jsx
 const [location, setLocation] = useState("Seattle, WA");
 if (someCondition) {
-	const [breed, setBreed] = useState("American Stanford");
+  const [breed, setBreed] = useState("American Stanford");
 }
 ```
 
@@ -518,14 +537,14 @@ Add rules for hooks:
 
 ```json
 {
-    "extends": [
-        "eslint:recommended",
-        "plugin:import/errors",
-        "plugin:react/recommended",
-        "plugin:jsx-a11y/recommended",
-        "plugin:react-hooks/recommended",
-        "prettier"
-    ]
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ]
 }
 ```
 
@@ -541,62 +560,67 @@ Example of ESLint warning of a hook being called conditionally:
 ## Animal & Breed Selector Hooks
 
 ```jsx
-import { useState } from "react"
+import { useState } from "react";
 
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
+const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-    const [location, setLocation] = useState("Seattle, WA");
-    const [animal, setAnimal] = useState("")
-    const [breed, setBreed] = useState("")
-    const breeds = []
+  const [location, setLocation] = useState("Seattle, WA");
+  const [animal, setAnimal] = useState("");
+  const [breed, setBreed] = useState("");
+  const breeds = [];
 
-    return (
-        <div className="search-params">
-            <form>
-                <label htmlFor="location">
-                    location
-                    <input id="location" onChange={e => setLocation(e.target.value)} value={location.toUpperCase()} placeholder="Location" />
-                </label>
-                <label htmlFor="animal">
-                animal
-                <select 
-                    id="animal"
-                    value={animal}  
-                    onChange={e => setAnimal(e.target.value)}
-                    onBlur={e => setAnimal(e.target.value)}
-                >
-                    <option />
-                    {
-                        ANIMALS.map(animal => (
-                            <option value={animal} key={animal}>{animal}</option>
-                        ))
-                    }
-                </select>
-                </label>
-                <label htmlFor="breed">
-                breed
-                <select 
-                    id="breed"
-                    value={breed}  
-                    onChange={e => setBreed(e.target.value)}
-                    onBlur={e => setBreed(e.target.value)}
-                >
-                    <option />
-                    {
-                        breeds.map(breed => (
-                            <option value={breed} key={breed}>{breed}</option>
-                        ))
-                    }
-                </select>
-                </label>
-                <button>Submit</button>
-            </form>
-        </div>
-    )
-}
+  return (
+    <div className="search-params">
+      <form>
+        <label htmlFor="location">
+          location
+          <input
+            id="location"
+            onChange={(e) => setLocation(e.target.value)}
+            value={location.toUpperCase()}
+            placeholder="Location"
+          />
+        </label>
+        <label htmlFor="animal">
+          animal
+          <select
+            id="animal"
+            value={animal}
+            onChange={(e) => setAnimal(e.target.value)}
+            onBlur={(e) => setAnimal(e.target.value)}
+          >
+            <option />
+            {ANIMALS.map((animal) => (
+              <option value={animal} key={animal}>
+                {animal}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="breed">
+          breed
+          <select
+            id="breed"
+            value={breed}
+            onChange={(e) => setBreed(e.target.value)}
+            onBlur={(e) => setBreed(e.target.value)}
+          >
+            <option />
+            {breeds.map((breed) => (
+              <option value={breed} key={breed}>
+                {breed}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
 
-export default SearchParams
+export default SearchParams;
 ```
 
 ## useEffect & fetching API data
@@ -639,11 +663,11 @@ Now we will render the API results:
 </form>
     {
         pets.map(pet => (
-            <Pet 
+            <Pet
                 name={pet.name}
                 animal={pet.animal}
                 breed={pet.breed}
-                key={pet.id} 
+                key={pet.id}
             />
         ))
     }
@@ -656,38 +680,38 @@ Useful when we want to replicate over and over again and not stick it to just on
 Create hook:
 
 ```jsx
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from "react";
 
-const localCache = {}
+const localCache = {};
 
 export default function useBreedList(animal) {
-    const [breedList, setBreedList] = useState([])
-    const [status, setStatus] = useState('unloaded')
+  const [breedList, setBreedList] = useState([]);
+  const [status, setStatus] = useState("unloaded");
 
-    useEffect(() => {
-        if (!animal) {
-            setBreedList([])
-        } else if (localCache[animal]){
-            setBreedList(localCache[animal])
-        } else {
-            requestBreedList()
-        }
-        async function requestBreedList() {
-            setBreedList([]) //empty list while loading API data to avoid weird things
-            setStatus('loading')
-    
-            const res = await fetch(
-                `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
-            )
-    
-            const json = await res.json()
-            localCache[animal] = json.breeds || [];
-            setBreedList[localCache[animal]]
-            setStatus('loaded')
-        }
-    }, [animal])
+  useEffect(() => {
+    if (!animal) {
+      setBreedList([]);
+    } else if (localCache[animal]) {
+      setBreedList(localCache[animal]);
+    } else {
+      requestBreedList();
+    }
+    async function requestBreedList() {
+      setBreedList([]); //empty list while loading API data to avoid weird things
+      setStatus("loading");
 
-    return [breedList, status]
+      const res = await fetch(
+        `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
+      );
+
+      const json = await res.json();
+      localCache[animal] = json.breeds || [];
+      setBreedList[localCache[animal]];
+      setStatus("loaded");
+    }
+  }, [animal]);
+
+  return [breedList, status];
 }
 ```
 
@@ -764,7 +788,7 @@ export default SearchParams;
 ## Environment
 
 ```jsx
-NODE_ENV=development
+NODE_ENV = development;
 ```
 
 Parcel set this to development automatically, buy other libraries less opinionated don’t
@@ -808,38 +832,43 @@ Create dummy component to route conditionally
 
 ```jsx
 const Details = () => {
-    return <h2>hi lololol omg wtf!</h2>
-}
+  return <h2>hi lololol omg wtf!</h2>;
+};
 
-export default Details
+export default Details;
 ```
 
-Import Details and React router and use it 
+Import Details and React router and use it
 
 ```jsx
-import  { StrictMode } from "react";
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import SearchParams from './SearchParams';
-import Details from './Details';
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SearchParams from "./SearchParams";
+import Details from "./Details";
 
 const App = () => {
   return (
-  <div>
-    <h1>Adopt Me!</h1>
-    <Router>
-      <Route path="/details/:id">
-        <Details />
-      </Route>
-      <Route path="/">
-        <SearchParams />
-      </Route>
-    </Router>
-  </div>
-  )
-}
+    <div>
+      <h1>Adopt Me!</h1>
+      <Router>
+        <Route path="/details/:id">
+          <Details />
+        </Route>
+        <Route path="/">
+          <SearchParams />
+        </Route>
+      </Router>
+    </div>
+  );
+};
 
-ReactDOM.render(<StrictMode><App /></StrictMode>, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+);
 ```
 
 <aside>
@@ -852,31 +881,36 @@ ReactDOM.render(<StrictMode><App /></StrictMode>, document.getElementById("root"
 It is used to avoid Router to route more than one path
 
 ```jsx
-import  { StrictMode } from "react";
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SearchParams from './SearchParams';
-import Details from './Details';
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SearchParams from "./SearchParams";
+import Details from "./Details";
 
 const App = () => {
   return (
-  <div>
-    <h1>Adopt Me!</h1>
-    <Router>
-      <Switch>
-        <Route path="/details/:id">
-          <Details />
-        </Route>
-        <Route path="/">
-          <SearchParams />
-        </Route>
-      </Switch>
-    </Router>
-  </div>
-  )
-}
+    <div>
+      <h1>Adopt Me!</h1>
+      <Router>
+        <Switch>
+          <Route path="/details/:id">
+            <Details />
+          </Route>
+          <Route path="/">
+            <SearchParams />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
+};
 
-ReactDOM.render(<StrictMode><App /></StrictMode>, document.getElementById("root"));
+ReactDOM.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+);
 ```
 
 ## Link
@@ -907,46 +941,49 @@ Important methods:
 - More: [https://es.reactjs.org/docs/react-component.html](https://es.reactjs.org/docs/react-component.html)
 
 ```jsx
-import { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class Details extends Component {
-    constructor () {
-        super();
+  constructor() {
+    super();
 
-        this.state = { loading: true};
-    }
+    this.state = { loading: true };
+  }
 
-    async componentDidMount() {
-        const res = await fetch (
-            `http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`
-        )
-        const json = await res.json();
-        this.setState(
-            Object.assign(
-            { 
-                loading: false,
-            }, json.pets[0]
-            )
-        );
-    }
+  async componentDidMount() {
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?id=${this.props.match.params.id}`
+    );
+    const json = await res.json();
+    this.setState(
+      Object.assign(
+        {
+          loading: false,
+        },
+        json.pets[0]
+      )
+    );
+  }
 
-    render () {
-        const {animal, breed, city, state, description, name } = this.state
-        return (
-            <div className="details">
-                <div>
-                    <h1>{name}</h1>
-                    <h2>{animal} - {breed} - {city}, {state}</h2>
-                    <button>Adopt {name}</button>
-                    <p>{description}</p>
-                </div>
-            </div>
-        )
-    }
+  render() {
+    const { animal, breed, city, state, description, name } = this.state;
+    return (
+      <div className="details">
+        <div>
+          <h1>{name}</h1>
+          <h2>
+            {animal} - {breed} - {city}, {state}
+          </h2>
+          <button>Adopt {name}</button>
+          <p>{description}</p>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default withRouter(Details)
+export default withRouter(Details);
 ```
 
 <aside>
@@ -1017,32 +1054,32 @@ To show it we’re going to implement a carousel for the pets’ images
 import { Component } from "react";
 
 class Carousel extends Component {
-    state = { active: 0 };
+  state = { active: 0 };
 
-    static defaultProps = {
-        images: ['http://pets-images.dev-apis.com/pets/none.jpg']
-    }
+  static defaultProps = {
+    images: ["http://pets-images.dev-apis.com/pets/none.jpg"],
+  };
 
-    render() {
-        const { active } = this.state;
-        const { images } = this.props;
+  render() {
+    const { active } = this.state;
+    const { images } = this.props;
 
-        return (
-            <div className="carousel">
-                <img src={images[active]} alt="" />
-                <div className="carousel-smaller">
-                    {images.map((photo, index) => (
-                        <img
-                            key={photo}
-                            src={photo}
-                            className={index === active ? "active": ""}
-                            alt="animal thumbnail"
-                        />
-                    ))}
-                </div>
-            </div>
-        )
-    }
+    return (
+      <div className="carousel">
+        <img src={images[active]} alt="" />
+        <div className="carousel-smaller">
+          {images.map((photo, index) => (
+            <img
+              key={photo}
+              src={photo}
+              className={index === active ? "active" : ""}
+              alt="animal thumbnail"
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Carousel;
@@ -1110,10 +1147,10 @@ Because the function lacks context to be executed. To fix it we can convert it t
 
 ```jsx
 handleIndexClick = (event) => {
-        this.setState({
-            active: +event.target.dataset.index
-        })
-    }
+  this.setState({
+    active: +event.target.dataset.index,
+  });
+};
 ```
 
 # Component error handling
@@ -1123,32 +1160,33 @@ handleIndexClick = (event) => {
 These feature allows to catch errors in components and handle them in a proper way. It can only be used with class components
 
 ```jsx
-import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class ErrorBoundary extends Component {
-    state = { hasError: false};
-    static getDerivedStateFromError() {
-        return { hasError: true};
-    }
-    componentDidCatch(error, info) {
-        // I log this to Sentry, Azure Monitor, New Relic, TrackJS....
-        console.error("ErrorBoundary caught an error", error, info)
-    }
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    // I log this to Sentry, Azure Monitor, New Relic, TrackJS....
+    console.error("ErrorBoundary caught an error", error, info);
+  }
 
-    render () {
-        if (this.state.hasError) {
-            return (
-                <h2>
-                    This listing has an error. <Link to="/">Click here</Link> to go back to the home page.
-                </h2>
-            )
-        }
-        return this.props.children;
+  render() {
+    if (this.state.hasError) {
+      return (
+        <h2>
+          This listing has an error. <Link to="/">Click here</Link> to go back
+          to the home page.
+        </h2>
+      );
     }
+    return this.props.children;
+  }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;
 ```
 
 <aside>
@@ -1209,7 +1247,7 @@ import ThemeContext from './ThemeContext';
 
 const App = () => {
   const theme = useState("darkblue");
-  
+
   return (
     <ThemeContext.Provider value={theme}>
     (...)
@@ -1249,23 +1287,23 @@ And this is the result:
 # Implement modals
 
 ```jsx
-import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
-const modalRoot = document.getElementById('modal');
+const modalRoot = document.getElementById("modal");
 
-const Modal = ({children}) => {
-    const elRef = useRef(null)
-    if (!elRef.current) {
-        elRef.current = document.createELement('div');
-    }
-    useEffect(() => {
-        modalRoot.appendChild(elRef.current);
-        return () => modalRoot.removeChild(elRef.children)
-    }, [])
+const Modal = ({ children }) => {
+  const elRef = useRef(null);
+  if (!elRef.current) {
+    elRef.current = document.createELement("div");
+  }
+  useEffect(() => {
+    modalRoot.appendChild(elRef.current);
+    return () => modalRoot.removeChild(elRef.children);
+  }, []);
 
-    return createPortal(<div>{children}</div>);
-}
+  return createPortal(<div>{children}</div>);
+};
 
 export default Modal;
 ```
